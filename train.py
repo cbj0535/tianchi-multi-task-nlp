@@ -15,7 +15,7 @@ from data_generator import Data_generator
 from calculate_loss import Calculate_loss
 
 
-def train(epochs=20, batchSize=64, lr=0.0001, device='cuda:3', accumulate=True, a_step=16, load_saved=False, file_path='./saved_best.pt', use_dtp=False, pretrained_model='./bert_pretrain_model', tokenizer_model='bert-base-chinese', weighted_loss=False):
+def train(epochs=20, batchSize=64, lr=0.0001, device='cuda:0', accumulate=True, a_step=16, load_saved=False, file_path='./saved_best.pt', use_dtp=False, pretrained_model='./bert_pretrain_model', tokenizer_model='bert-base-chinese', weighted_loss=False):
     device = device
     tokenizer = load_tokenizer(tokenizer_model)
     my_net = torch.load(file_path) if load_saved else Net(load_pretrained_model(pretrained_model))
@@ -247,6 +247,6 @@ def train(epochs=20, batchSize=64, lr=0.0001, device='cuda:3', accumulate=True, 
                 
 if __name__ == '__main__':
     print('---------------------start training-----------------------')
-    pretrained_model = './robert_pretrain_model'
-    tokenizer_model = './robert_pretrain_model'
-    train(batchSize=16, device='cuda:3', lr=0.0001, use_dtp=True, pretrained_model=pretrained_model, tokenizer_model=tokenizer_model, weighted_loss=True)
+    pretrained_model = './bert_pretrain_model'
+    tokenizer_model = './bert_pretrain_model'
+    train(batchSize=16, device='cuda:0', lr=0.0001, use_dtp=True, pretrained_model=pretrained_model, tokenizer_model=tokenizer_model, weighted_loss=True)

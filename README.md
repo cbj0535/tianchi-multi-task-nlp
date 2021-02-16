@@ -54,7 +54,47 @@ python ./inference.py
 ```
 zip -r ./result.zip ./*.json
 ```
-7. 生成Docker并进行提交。
+7. 生成Docker并进行提交，参考：https://tianchi.aliyun.com/competition/entrance/231759/tab/174
+  - 创建云端镜像仓库：https://cr.console.aliyun.com/
+  - 创建命名空间和镜像仓库；
+  - 然后切换到`submission`文件夹下，执行下面命令；
+
+  ```
+  # 用于登录的用户名为阿里云账号全名，密码为开通服务时设置的密码。
+  sudo docker login --username=xxx@mail.com registry.cn-hangzhou.aliyuncs.com
+
+  # 使用本地Dockefile进行构建，使用创建仓库的【公网地址】
+  # 如 docker build -t registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0 .
+  docker build -t registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0 .
+  ```
+
+  输出构建过程：
+  ```
+  Sending build context to Docker daemon  18.94kB
+  Step 1/4 : FROM registry.cn-shanghai.aliyuncs.com/tcc-public/python:3
+  ---> a4cc999cf2aa
+  Step 2/4 : ADD . /
+  ---> Using cache
+  ---> b18fbb4425ef
+  Step 3/4 : WORKDIR /
+  ---> Using cache
+  ---> f5fcc4ca5eca
+  Step 4/4 : CMD ["sh", "run.sh"]
+  ---> Using cache
+  ---> ed0c4b0e545f
+  Successfully built ed0c4b0e545f
+  ```
+
+  ```
+  # ed0c4b0e545f 为镜像id，上面构建过程最后一行
+  sudo docker taged0c4b0e545f registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0
+
+  # 提交镜像到云端
+  docker push registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0
+  ```
+
+8. [比赛提交页面](https://tianchi.aliyun.com/competition/entrance/531865/submission/723)，填写镜像路径+版本号，以及用户名和密码则可以完成提交。
+
 
 ## 改进思路
 
