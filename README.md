@@ -1,4 +1,4 @@
-# tianchi-multi-task-nlp
+# 比赛全流程体验
 NLP中文预训练模型泛化能力挑战赛
 
 ## 训练环境介绍
