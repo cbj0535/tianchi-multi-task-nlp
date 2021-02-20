@@ -100,7 +100,7 @@ zip -r ./result.zip ./*.json
 
   ```
   # ed0c4b0e545f 为镜像id，上面构建过程最后一行
-  sudo docker taged0c4b0e545f registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0
+  sudo docker tag ed0c4b0e545f registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0
 
   # 提交镜像到云端
   docker push registry.cn-shenzhen.aliyuncs.com/test_for_tianchi/test_for_tianchi_submit:1.0
